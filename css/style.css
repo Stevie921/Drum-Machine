@@ -1,0 +1,76 @@
+html {
+  font-family: Verdana;
+  color: #545148;
+}
+
+#drum-machine {
+  width: 75%;
+  height: 300px;
+  border: 5px solid #333;
+  margin: 150px auto;
+}
+
+[data-reactroot] {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+#display {
+  background: #545148;
+  grid-row: 1/4;
+  color: #fff;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.drum-keys {
+  grid-row: 1/4;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.drum-pad {
+  border: 2px solid #545148;
+  font-size: 2em;
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.drum-pad:hover {
+  background: #ffbb1d;
+  cursor: pointer;
+}
+
+#volume {
+  margin-top: 25px;
+}
+
+.highlight {
+  background: #ffbb1d;
+}
+
+.switch {
+  width: 80px;
+  height: 30px;
+  background: #fff;
+  margin: 50px auto;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+#power {
+  height: 80%;
+  width: 30%;
+  background: #BD1315;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+

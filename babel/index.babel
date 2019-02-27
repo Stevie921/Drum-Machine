@@ -1,0 +1,229 @@
+//MAIN CONTAINER
+class App extends React.Component {
+  constructor(props){
+    super(props);
+}
+  render(){
+  return (
+   <div className="container" onKeyPress={this.handleKey} tabIndex="0">
+      <Display />
+      <Pad />
+    </div>
+   );
+ }
+}
+
+//CONTROL ELEMENTS
+class Display extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      value: 50
+    }
+    
+    this.handleChange = this.handleChange.bind(this);
+  }
+  
+  handleChange(e){
+    const audio = document.getElementsByClassName("clip");
+    this.setState({value: e.target.value});
+    for(let i = 0; i < audio.length; i++){
+      audio[i].volume = this.state.value / 100;
+    }
+  }
+  
+  //POWER BUTTON
+  power(){
+    const power = document.getElementsByClassName("switch")[0];
+    const panel = document.getElementById("drum-machine");
+    if(power.style.justifyContent === "end"){
+      power.style.justifyContent = "start";
+     
+      } else {
+      power.style.justifyContent = "end";
+     }
+  }
+  
+render() {
+    return (
+      <div id="display">
+        <p id="para">Drum Kit 1</p>
+        <input type="range" min="0" max="100" step="1" value={this.state.value} name="volume" id="volume" onChange={this.handleChange}/>
+         <label for="volume">Volume</label>
+        <div className="switch" onClick={this.power}>
+          <div id="power" name="power"></div>
+        </div>
+      </div>
+    )
+  }
+}
+
+//DRUM KEYPAD
+class Pad extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.handleClick = this.handleClick.bind(this);
+    this.handleKey = this.handleKey.bind(this);
+  }
+
+  //CHECK WHICH BUTTON WAS CLICKED
+  handleClick(e) {
+    const audio = document.getElementsByClassName("clip");
+    const display = document.getElementById("para");
+    switch (e.target.innerText) {
+      case "Q":
+        audio[0].src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3";
+        audio[0].play();
+        display.innerText = "Heater 1";
+        break;
+      case "W":
+        audio[1].src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3";
+        audio[1].play();
+        display.innerText = "Heater 2";
+        break;
+      case "E":
+        audio[2].src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3";
+        audio[2].play();
+        display.innerText = "Heater 3";
+        break;
+      case "A":
+        audio[3].src =
+          "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3";
+        audio[3].play();
+        display.innerText = "Heater 4";
+        break;
+      case "S":
+        audio[4].src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3";
+        audio[4].play();
+        display.innerText = "Clap";
+        break;
+      case "D":
+        audio[5].src = "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3";
+        audio[5].play();
+        display.innerText = "Open HH";
+        break;
+      case "Z":
+        audio[6].src =
+          "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3";
+        audio[6].play();
+        display.innerText = "Kick n' Hat";
+        break;
+      case "X":
+        audio[7].src =
+          "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3";
+        audio[7].play();
+        display.innerText = "Kick";
+        break;
+      case "C":
+        audio[8].src = "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3";
+        audio[8].play();
+        display.innerText = "Closed HH";
+        break;
+    }
+  }
+  
+ //CHECK WHICH BUTTON WAS PRESSED
+  handleKey(e){
+    const audio = document.getElementsByClassName("clip");
+    const display = document.getElementById("para");
+    const keys = document.getElementsByTagName("span");
+    switch(e.code){
+      case "KeyQ":
+      audio[0].src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3";
+      audio[0].play();
+      display.innerText = "Heater 1";
+      keys[0].classList.add("highlight");
+      setTimeout(function(){keys[0].classList.remove("highlight")}, 500);
+      break;
+      case "KeyW":
+      audio[1].src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3";
+      audio[1].play();
+      display.innerText = "Heater 2";
+      keys[1].classList.add("highlight");
+      setTimeout(function(){keys[1].classList.remove("highlight")}, 500);
+      break;
+      case "KeyE":
+      audio[2].src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3";
+      audio[2].play();
+      display.innerText = "Heater 3";
+      keys[2].classList.add("highlight");
+      setTimeout(function(){keys[2].classList.remove("highlight")}, 500);
+      break;
+      case "KeyA":
+      audio[3].src =
+          "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3";
+      audio[3].play();
+      display.innerText = "Heater 4";
+      keys[3].classList.add("highlight");
+      setTimeout(function(){keys[3].classList.remove("highlight")}, 500);
+      break;
+      case "KeyS":
+      audio[4].src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3";
+      audio[4].play();
+      display.innerText = "Clap";
+      keys[4].classList.add("highlight");
+      setTimeout(function(){keys[4].classList.remove("highlight")}, 500);
+      break;
+      case "KeyD":
+      audio[5].src = "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3";
+      audio[5].play();
+      display.innerText = "Open HH";
+      keys[5].classList.add("highlight");
+      setTimeout(function(){keys[5].classList.remove("highlight")}, 500);
+      break;
+      case "KeyZ":
+      audio[6].src =
+          "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3";
+      audio[6].play();
+      display.innerText = "Kick n' Hat";
+      keys[6].classList.add("highlight");
+      setTimeout(function(){keys[6].classList.remove("highlight")}, 500);
+      break;
+      case "KeyX":
+      audio[7].src =
+          "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3";
+      audio[7].play();
+      display.innerText = "Kick";
+      keys[7].classList.add("highlight");
+      setTimeout(function(){keys[7].classList.remove("highlight")}, 500);
+      break;
+      case "KeyC":
+      audio[8].src = "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3";
+      audio[8].play();
+      display.innerText = "Closed HH";
+      keys[8].classList.add("highlight");
+      setTimeout(function(){keys[8].classList.remove("highlight")}, 500);
+      break;
+    }
+  }
+  
+ //ADD CLASS TO SPANS
+  componentDidMount() {
+    const buttons = document.getElementsByTagName("span");
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].classList.add("drum-pad");
+      buttons[i].innerHTML += '<audio src="" class="clip" id="' +  buttons[i].innerText +'"/>';
+    }
+    document.body.addEventListener("keydown", this.handleKey);
+   }
+
+  render() {
+    return (
+      <div className="drum-keys" onLoad={this.handleClass}>
+        <span id="heater1" onClick={this.handleClick}>Q</span>
+        <span id="heater2" onClick={this.handleClick}>W</span>
+        <span id="heater3" onClick={this.handleClick}>E</span>
+        <span id="heater4" onClick={this.handleClick}>A</span>
+        <span id="clap" onClick={this.handleClick}>S</span>
+        <span id="openHH" onClick={this.handleClick}>D</span>
+        <span id="kicknHat" onClick={this.handleClick}>Z</span>
+        <span id="kick" onClick={this.handleClick}>X</span>
+        <span id="closedHH" onClick={this.handleClick}>C</span>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("drum-machine"));
